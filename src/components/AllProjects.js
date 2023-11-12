@@ -12,6 +12,8 @@ import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
 import Nav from 'react-bootstrap/Nav';
 import Tab from 'react-bootstrap/Tab';
+import TrackVisibility from "react-on-screen";
+import 'animate.css';
 export const AllProjects = () => {
 
 
@@ -59,12 +61,17 @@ export const AllProjects = () => {
                 <Container>
                     <Row>
                         <Col xs={12} className={"text-center"}>
+                            <TrackVisibility>
+                                {({isVisible}) =>
+                                    <div className={isVisible? "animate__animated animate__slideInUp" : ""}>
                             <h2>
                                 Projects
                             </h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias aliquam
                             </p>
+                                    </div>}
+                                    </TrackVisibility>
 
                             <Tab.Container id={"projects-tabs"} defaultActiveKey={"first"}>
 

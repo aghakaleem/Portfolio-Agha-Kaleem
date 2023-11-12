@@ -3,7 +3,8 @@ import Button from 'react-bootstrap/Button';
 import profilePicture from '../assets/img/pp.png';
 import {Col, Container, Row} from "react-bootstrap";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
-
+import 'animate.css';
+import TrackVisibility from "react-on-screen";
 export default function HeroSection() {
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
@@ -49,13 +50,18 @@ export default function HeroSection() {
                 <Container>
                     <Row className="align-items-center">
                         <Col xs={12} md={6} xl={7}>
+                            <TrackVisibility>
+                                {({isVisible}) =>
+                                <div className={isVisible? "animate__animated animate__fadeIn" : ""}>
                             <span className={"tagline"}>
                                 Welcome to my Portfolio
                             </span>
                             <h1>{`Hi I'm Agha Kaleem `} <span className={"wrap"}>{text}</span></h1>
                             <p>lorem ipsum is simply dummy text of the printing and typesetting industry,</p>
                             <Button variant={"outline-light"} onClick={() => console.log('know more')}>Know More&nbsp; <ArrowRightCircle size={25}/></Button>
-                        </Col>
+                                </div>}
+                                </TrackVisibility>
+                            </Col>
                         <Col xs={12} md={6} xl={5}>
                             <img src={profilePicture} alt={"Agha Kaleem"} className={"img-fluid"} />
                         </Col>

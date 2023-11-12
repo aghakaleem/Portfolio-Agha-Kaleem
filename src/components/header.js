@@ -29,7 +29,7 @@ export default function Header() {
     }
     return (
         <>
-            <Navbar bg={"dark"}  expand="lg" data-bs-theme="dark" className={scrolled? "scrolled": ""} >
+            <Navbar  expand="lg" data-bs-theme="dark" className={scrolled? "scrolled": ""} >
                 <Container>
                     <Navbar.Brand className={"text-white"} href="#home">Agha Kaleem</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

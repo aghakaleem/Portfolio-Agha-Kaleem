@@ -3,8 +3,10 @@ import Form from 'react-bootstrap/Form';
 import { useState} from "react";
 import {Col, Row} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import contactImg from '../assets/img/contact-img.jpg';
+import contactImg from '../assets/img/contact-img.svg';
 import button from "bootstrap/js/src/button";
+
+import MailchimpSubscribe from "react-mailchimp-subscribe"
 
 export default function Contact (){
 
@@ -49,7 +51,7 @@ export default function Contact (){
             <section className={"contact"} id={"contact"}>
                 <Container>
                     <Row className={"align-items-center"}>
-                        <Col md={6}>
+                        <Col md={6} lg={4}>
                             <img src={contactImg} alt="Contact Us"/>
                         </Col>
 
@@ -66,16 +68,13 @@ export default function Contact (){
                                         <input type="text" placeholder={"Last Name"} value={formDetails.lastName} onChange={(e) => onFormUpdate('lastName', e.target.value)}/>
                                     </Col>
 
-                                    <Col sm={6} className={"px-1"}>
+                                    <Col sm={12} md={12} lg={12} xl={12} className={"px-1"}>
                                         <input type="email" placeholder={"Email"} value={formDetails.email} onChange={(e) => onFormUpdate('email', e.target.value)}/>
                                     </Col>
 
-                                    <Col sm={6} className={"px-1"}>
-                                        <input type="tel" placeholder={"Last Name"} value={formDetails.phone} onChange={(e) => onFormUpdate('phone', e.target.value)}/>
-                                    </Col>
-                                    <Col>
-                                        <textarea rows={6} value={formDetails.message} onChange={(e) => onFormUpdate('message', e.target.value)}> </textarea>
-                                        <button type={"submit"}><span>{buttonText}</span></button>
+                                    <Col sm={12} md={12} lg={12} xl={12} className={"px-1"}>
+                                        <textarea  placeholder={"Your Message"} rows={6} value={formDetails.message} onChange={(e) => onFormUpdate('message', e.target.value)}> </textarea>
+                                        <Button  variant={"outline-dark"} type={"submit"}><span>{buttonText}</span></Button>
                                     </Col>
                                     {
                                         status.message &&
