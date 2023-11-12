@@ -1,21 +1,29 @@
 const express = require("express");
-const router = express.Router();
+const path = require("path");
 const cors = require("cors");
+const PORT = process.env.PORT || 5000;
+const bodyParser = require("body-parser");
+const router = express.Router();
 const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 // server used to send emails
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 app.use("/", router);
-app.listen(5000, () => console.log("Server Running"));
+app.use(bodyParser.json());
+app.get ("/contact", (req, res) => {
+    res.json({message: "Hello from server!"});
 
+});
 
-const contactEmail = nodemailer.createTransport({
-    service: 'outlook.com',
+const contactEmail = nodemailer.createTransport( {
+    service: "gmail",
     auth: {
-        user: "ak-ceo@outlook.com",
-        pass: "asok@zxok456"
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.EMAIL_PASS,
     },
 });
 
@@ -27,14 +35,20 @@ contactEmail.verify((error) => {
     }
 });
 
-router.post("/contact", (req, res) => {
+
+
+app.listen(5000, () => console.log("Server Running"));
+
+
+
+app.post("/contact", bodyParser.urlencoded({extended:false}), (req, res) => {
     const name = req.body.firstName + req.body.lastName;
     const email = req.body.email;
     const message = req.body.message;
     const phone = req.body.phone;
     const mail = {
         from: name,
-        to: "ak-ceo@gmail.com",
+        to: process.env.EMAIL_ADDRESS,
         subject: "Contact Form Submission - Portfolio",
         html: `<p>Name: ${name}</p>
            <p>Email: ${email}</p>

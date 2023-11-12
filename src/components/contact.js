@@ -36,13 +36,13 @@ export default function Contact (){
             },
             body: JSON.stringify(formDetails),
         });
+        let result = await response.json();
         setButtonText('Send');
-        let result = response.json();
         setFormDetails(formInitialDetails);
         if (result.code === 200) {
             setStatus({success: true, message: 'Message Sent Successfully'});
         } else{
-            setStatus({success: false, message: 'Message Failed to Send'});
+            setStatus({success: false, message: 'Message Failed to Send' });
         }
     };
     return(
