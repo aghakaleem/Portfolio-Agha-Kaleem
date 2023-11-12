@@ -54,7 +54,7 @@ export default function HeroSection() {
                             </span>
                             <h1>{`Hi I'm Agha Kaleem `} <span className={"wrap"}>{text}</span></h1>
                             <p>lorem ipsum is simply dummy text of the printing and typesetting industry,</p>
-                            <Button variant={"outline-light"} onClick={() => console.log('know more')}>Know More <ArrowRightCircle size={25}/></Button>
+                            <Button variant={"outline-light"} onClick={() => console.log('know more')}>Know More&nbsp; <ArrowRightCircle size={25}/></Button>
                         </Col>
                         <Col xs={12} md={6} xl={5}>
                             <img src={profilePicture} alt={"Agha Kaleem"} className={"img-fluid"} />
