@@ -3,13 +3,11 @@
 
 import Footer from './components/footer';
 import Header from './components/header';
-
+import {AllProjects} from './components/AllProjects';
 
 import {Reviews} from './components/reviews';
 import {Routes, Route} from "react-router-dom";
 import {WelcomePage} from "./components/welcomePage";
-import {Offerings} from "./components/Offerings";
-import About from "./components/about";
 function App() {
   return (
     <div className="App">
@@ -17,8 +15,7 @@ function App() {
         <Header />
         <Routes>
             <Route path="/" element={<WelcomePage />} />
-            <Route path={'/offerings'} element={<Offerings />} />
-            <Route path={'/about'} element={<About />} />
+            <Route path={'/all-projects'} element={<AllProjects />} />
             <Route path={'/reviews'} element={<Reviews />} />
         </Routes>
         <Footer />
