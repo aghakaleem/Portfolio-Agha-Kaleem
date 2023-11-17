@@ -1,14 +1,15 @@
 import HeroSection from "./heroSection";
-import {AllProjects} from "./AllProjects";
+import {Offerings} from "./Offerings";
 import {Reviews} from "./reviews";
-import { Skills } from "./skills";
+import About from "./about";
+
 export const WelcomePage = () => {
     return (
         <>
 
             <HeroSection />
-            <Skills />
-            <AllProjects />
+            <About />
+            <Offerings />
             <Reviews />
 
         </>

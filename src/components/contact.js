@@ -3,12 +3,11 @@ import Form from 'react-bootstrap/Form';
 import { useState} from "react";
 import {Col, Row} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import contactImg from '../assets/img/contact-img.svg';
+
 import button from "bootstrap/js/src/button";
 
-import MailchimpSubscribe from "react-mailchimp-subscribe"
 
-export default function Contact (){
+export const Contact = () =>{
 
     const formInitialDetails = {
         firstName: '',
@@ -26,38 +25,17 @@ export default function Contact (){
         setFormDetails({...formDetails, [category]: value});
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setButtonText('Sending...');
-        let response = await fetch("http://localhost:5000/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "Application/json;charset=utf-8",
-            },
-            body: JSON.stringify(formDetails),
-        });
-        let result = await response.json();
-        setButtonText('Send');
-        setFormDetails(formInitialDetails);
-        if (result.code === 200) {
-            setStatus({success: true, message: 'Message Sent Successfully'});
-        } else{
-            setStatus({success: false, message: 'Message Failed to Send' });
-        }
-    };
+
     return(
         <>
 
             <section className={"contact"} id={"contact"}>
-                <Container>
+                <Container >
                     <Row className={"align-items-center"}>
-                        <Col md={6} lg={4}>
-                            <img src={contactImg} alt="Contact Us"/>
-                        </Col>
 
-                        <Col md={6}>
-                            <h2>Get In Touch</h2>
-                            <form onSubmit={handleSubmit}>
+                        <Col md={12} >
+                            <h2>Contact Us</h2>
+                            <form onSubmit={onFormUpdate}>
                                 <Row>
                                     <Col sm={6} className={"px-1"}>
                                         <input type="text" placeholder={"First Name"} value={formDetails.firstName} onChange={(e) => onFormUpdate('firstName', e.target.value)}/>
@@ -74,7 +52,7 @@ export default function Contact (){
 
                                     <Col sm={12} md={12} lg={12} xl={12} className={"px-1"}>
                                         <textarea  placeholder={"Your Message"} rows={6} value={formDetails.message} onChange={(e) => onFormUpdate('message', e.target.value)}> </textarea>
-                                        <Button  variant={"outline-dark"} type={"submit"}><span>{buttonText}</span></Button>
+                                        <Button variant={"success"} type={"submit"}><span>{buttonText}</span></Button>
                                     </Col>
                                     {
                                         status.message &&

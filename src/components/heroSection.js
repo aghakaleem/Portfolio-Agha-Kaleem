@@ -1,47 +1,12 @@
-import { useState, useEffect } from "react";
+
 import Button from 'react-bootstrap/Button';
 import profilePicture from '../assets/img/pp.png';
 import {Col, Container, Row} from "react-bootstrap";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 import 'animate.css';
-import TrackVisibility from "react-on-screen";
+
 export default function HeroSection() {
-    const [loopNum, setLoopNum] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
-    const toRotate = ["Web Developer", "Frontend Developer", "Backend Developer", "Full Stack Developer"];
-    const [text, setText] = useState('');
-    const [delta, setDelta] = useState(300 - Math.random() * 100);
-    const period = 2000;
 
-    useEffect(() => {
-
-        let ticker = setInterval(() => {
-            tick();
-        }, delta)
-
-        return () => {clearInterval(ticker)};
-        } , [text])
-
-    const tick = () => {
-        let i = loopNum % toRotate.length;
-        let fullText = toRotate[i];
-        let updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
-
-        setText(updatedText);
-
-        if (isDeleting) {
-            setDelta(prevDelta => prevDelta /2)
-        }
-
-        if (!isDeleting && updatedText === fullText) {
-            setIsDeleting(true);
-            setDelta(period);
-        } else if (isDeleting && updatedText === '') {
-                setIsDeleting(false);
-                setLoopNum(loopNum + 1);
-                setDelta(500);
-        }
-    }
 
     return (
         <>
@@ -50,20 +15,27 @@ export default function HeroSection() {
                 <Container>
                     <Row className="align-items-center">
                         <Col xs={12} md={6} xl={7}>
-                            <TrackVisibility>
-                                {({isVisible}) =>
-                                <div className={isVisible? "animate__animated animate__fadeIn" : ""}>
-                            <span className={"tagline"}>
-                                Welcome to my Portfolio
-                            </span>
-                            <h1>{`Hi I'm Agha Kaleem `} <span className={"wrap"}>{text}</span></h1>
-                            <p>lorem ipsum is simply dummy text of the printing and typesetting industry,</p>
-                            <Button variant={"outline-light"} onClick={() => console.log('know more')}>Know More&nbsp; <ArrowRightCircle size={25}/></Button>
-                                </div>}
-                                </TrackVisibility>
+
+                                <div>
+
+                            <p>Indulge in a symphony of flavors at our artisanal bakery.
+                                Welcome to a world where the aroma of freshly baked
+                                wonders captivates your senses. Our master bakers
+                                craft each creation with passion, using only the finest
+                                ingredients to ensure every bite is pure delight.
+
+                                From flaky croissants to decadent cakes, experience
+                                the epitome of taste and craftsmanship. Whether it's
+                                a special occasion or a craving for the extraordinary,
+                                our bakery offers a haven for your palate. Elevate
+                                your moments with the magic of our oven-fresh delights.
+                                Your journey to exceptional taste begins here.</p>
+
+                                </div>
+
                             </Col>
                         <Col xs={12} md={6} xl={5}>
-                            <img src={profilePicture} alt={"Agha Kaleem"} className={"img-fluid"} />
+                            <img src={profilePicture} alt={"Profile"} className={"img-fluid"} />
                         </Col>
                     </Row>
                 </Container>
